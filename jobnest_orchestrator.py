@@ -12,6 +12,7 @@ import json
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import datetime
 from pathlib import Path
@@ -26,10 +27,15 @@ def cmd(exe, *args, stdin=None, timeout=1200):
     binary = shutil.which(exe)
     if not binary:
         raise RuntimeError(f'{exe} not found in PATH. Open a new terminal and retry.')
-    p = subprocess.run([binary, *args], cwd=ROOT, input=stdin,
-                       text=True, encoding='utf-8', errors='replace',
-                       stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                       timeout=timeout, check=False)
+    # CLI grandchildren can inherit pipes on Windows and keep communicate() waiting after exit.
+    with tempfile.TemporaryFile(mode='w+', encoding='utf-8') as out, \
+         tempfile.TemporaryFile(mode='w+', encoding='utf-8') as err:
+        p = subprocess.run([binary, *args], cwd=ROOT, input=stdin,
+                           text=True, encoding='utf-8', errors='replace',
+                           stdout=out, stderr=err, timeout=timeout, check=False)
+        out.seek(0)
+        err.seek(0)
+        p.stdout, p.stderr = out.read(), err.read()
     if p.returncode:
         raise RuntimeError(f'{exe} exited {p.returncode}: {p.stderr[-2500:]}')
     return p
