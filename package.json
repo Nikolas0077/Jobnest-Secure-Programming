@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./public/assets/css/public.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./public/assets/css/public.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "overrides": {
+    "@parcel/watcher": "2.6.0"
+  }
+}

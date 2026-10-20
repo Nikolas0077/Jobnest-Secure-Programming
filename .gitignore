@@ -1,4 +1,7 @@
 .orchestration/
 .env
+.env.*
+!.env.example
 storage/private/
 __pycache__/
+node_modules/
