@@ -1,0 +1,6 @@
+# Apache (XAMPP): send every request in this folder to the API front controller.
+# Point the virtual host DocumentRoot (or an Alias /api) to api/public.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+Options -Indexes

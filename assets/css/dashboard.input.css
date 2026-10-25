@@ -1,0 +1,63 @@
+/* Dashboard styles (Slot B). Separate from public.css so Slot A files stay untouched.
+   Build: npx @tailwindcss/cli -i ./assets/css/dashboard.input.css -o ./public/assets/css/dashboard.css --minify */
+@reference "tailwindcss";
+
+.dashboard-layout { @apply flex flex-col gap-6 py-8; }
+.dashboard-sidebar { @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm; }
+.dashboard-user { @apply mb-4 flex flex-col items-start gap-1 border-b border-slate-100 pb-4; }
+.dashboard-user-name { @apply text-base text-slate-900; overflow-wrap: anywhere; }
+.dashboard-menu { @apply flex list-none flex-col gap-1; }
+.dashboard-menu-link { @apply block rounded-md px-3 py-2 text-sm font-medium text-slate-600 no-underline; }
+.dashboard-menu-link:hover, .dashboard-menu-link.active { @apply bg-blue-50 text-blue-700 no-underline; }
+.dashboard-main { @apply min-w-0 flex-1; }
+.dashboard-header { @apply mb-6; }
+.dashboard-panel { @apply mb-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm; overflow-wrap: anywhere; }
+.panel-header { @apply mb-4 flex flex-wrap items-start justify-between gap-3; }
+.panel-title { @apply mb-1 text-lg font-bold text-slate-900; }
+.panel-text { @apply mb-4 text-sm text-slate-600; }
+.panel-empty { @apply py-6 text-center text-sm text-slate-500; }
+.stat-grid { @apply mb-6 grid grid-cols-1 gap-4; }
+.stat-card { @apply flex flex-col gap-1 rounded-xl border border-slate-200 bg-white p-5 shadow-sm; }
+.stat-label { @apply text-xs font-semibold tracking-wide text-slate-500 uppercase; }
+.stat-value { @apply text-2xl font-bold text-slate-900; }
+.table-wrap { @apply w-full overflow-x-auto; }
+.data-table { @apply w-full border-collapse text-left text-sm; }
+.data-table th { @apply border-b border-slate-200 px-3 py-2 text-xs font-semibold tracking-wide text-slate-500 uppercase; }
+.data-table td { @apply border-b border-slate-100 px-3 py-3 align-top text-slate-700; }
+.data-table code, .dashboard-panel code { @apply rounded bg-slate-100 px-1.5 py-0.5 text-xs text-slate-800; }
+.status-badge { @apply inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+.status-success { @apply bg-emerald-50 text-emerald-700; }
+.status-danger { @apply bg-red-50 text-red-700; }
+.status-info { @apply bg-sky-50 text-sky-700; }
+.status-neutral { @apply bg-slate-100 text-slate-700; }
+.detail-list { @apply mb-4 grid grid-cols-1 gap-3 text-sm; }
+.detail-list dt { @apply font-semibold text-slate-800; }
+.detail-list dd { @apply text-slate-600; }
+.pre-text { @apply whitespace-pre-wrap; }
+.dashboard-form { @apply max-w-3xl; }
+.form-grid-2 { @apply grid grid-cols-1 gap-x-4; }
+.form-actions { @apply flex flex-wrap gap-3; }
+.table-actions { @apply flex flex-wrap items-center gap-2; }
+.inline-form { @apply flex flex-wrap items-center gap-2; }
+.form-control-sm { @apply w-auto py-1.5; }
+.btn-danger { @apply border-red-600 bg-red-600 text-white; }
+.btn-danger:hover { @apply border-red-700 bg-red-700 text-white; }
+.tab-nav { @apply mb-4 flex flex-wrap gap-2; }
+.tab-link { @apply rounded-full border border-slate-300 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-700 no-underline; }
+.tab-link:hover, .tab-link.active { @apply border-blue-700 bg-blue-700 text-white no-underline; }
+.saved-job { @apply flex flex-col gap-2; }
+.saved-job-remove { @apply self-end; }
+.dashboard-jobs-grid { @apply grid grid-cols-1 gap-5; }
+.search-inline { @apply mb-6 flex flex-wrap items-end gap-3; }
+.search-inline .form-group { @apply mb-0 min-w-48 flex-1; }
+.error-page { @apply py-14; }
+.sr-only { @apply sr-only; }
+
+@media (min-width: 640px) {
+  .stat-grid, .form-grid-2, .detail-list, .dashboard-jobs-grid { @apply grid-cols-2; }
+}
+@media (min-width: 1024px) {
+  .dashboard-layout { @apply flex-row items-start; }
+  .dashboard-sidebar { @apply sticky top-24 w-60 shrink-0; }
+  .stat-grid { @apply grid-cols-3; }
+}

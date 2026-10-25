@@ -1,0 +1,2 @@
+# Defense in depth: if this repo is ever placed inside an Apache web root, deny direct access.
+Require all denied
